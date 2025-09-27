@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+
+  <!-- Heading Row -->
+    <div class="row align-items-center my-5">
+      <div class="col-lg-6">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'images/letter_top.png' %}" alt="">
+      </div>
+      <!-- /.col-lg-8 -->
+      <div class="col-lg-5">
+        <h1 class="font-weight-light">おたより一覧</h1>
+        <p>わかば保育園からのおたよりです。<br>日々の保育園での様子や、お知らせなどを投稿します。</p>
+      </div>
+      <!-- /.col-md-4 -->
+    </div>
+  <!-- /.row -->
+
+  <!-- Content Row -->
+  <div class="row">
+    {% for letter in letter_list %}
+      <div class="col-md-3 mb-4">
+        <div class="card h-80">
+          {% if letter.image %}
+            <img class="card-img-top" src="{{ letter.index_main.url }}" alt="{{ letter.title }}"/>
+          {% else %}
+            <img class="card-img-top" src="{% static 'images/letter_list.jpg' %}" alt="{{ letter.title }}"/>
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ letter.title }}</h5>
+          </div>
+          <div class="card-footer">
+            <a href="{% url 'letter:detail' letter.id %}" class="btn btn-primary btn-sm">詳しく見る</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <!-- /.row -->
+
+{% endblock %}
+
