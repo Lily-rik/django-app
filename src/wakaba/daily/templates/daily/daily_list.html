@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+
+  <div class="vh-100">
+    <!-- Heading Row -->
+    <div class="row align-items-center my-5">
+      <div class="col-lg-6">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'images/daily_top.jpg' %}" alt="">
+      </div>
+      <!-- /.col-lg-8 -->
+      <div class="col-lg-5">
+        <h1 class="font-weight-light">{{ user.get_username }}ちゃんの連絡帳</h1>
+      </div>
+      <!-- /.col-md-4 -->
+    </div>
+    <!-- /.row -->
+
+    <!-- Content Row -->
+    <div class="row-8 mt-3">
+      {% for daily in daily_list %}
+        <a href="{% url 'daily:detail' daily.id %}" class="list-group-item list-group-item-action" aria-current="true">
+          {{ daily.created|date:"Y-m-d"}}
+        </a>
+      {% endfor %}
+      </ul>
+    </div>
+    <!-- /.row -->
+  </div>
+
+{% endblock %}

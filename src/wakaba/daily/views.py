@@ -1,21 +1,27 @@
+from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
 from django.contrib import messages
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Letter
+from .models import Daily
 
 class UserroomMixin(LoginRequiredMixin):
     login_url = reverse_lazy("login")
 
-class LetterListView(UserroomMixin, ListView):
-  model = Letter
+class DailyListView(UserroomMixin, ListView):
+    model = Daily
 
-class LetterCreateView(UserroomMixin, CreateView):
-    model = Letter
-    fields = ["title", "content", "image"]
-    success_url = reverse_lazy("letter:index")
+    def get_queryset(self):
+        return self.model.objects.filter(
+            user=self.request.user,
+        )
+
+class DailyCreateView(UserroomMixin, CreateView):
+    model = Daily
+    fields = ["bt", "meal", "sleep", "stool", "medicine", "mood", "contact"]
+    success_url = reverse_lazy("daily:index")
 
     def form_valid(self, form):
         messages.success(self.request, "保存しました")
@@ -25,16 +31,16 @@ class LetterCreateView(UserroomMixin, CreateView):
         messages.error(self.request, "保存できませんでした")
         return super().form_invalid(form)
 
-class LetterDetailView(UserroomMixin, DetailView):
-    model = Letter
+class DailyDetailView(UserroomMixin, DetailView):
+    model = Daily
 
-class LetterUpdateView(UserroomMixin, UpdateView):
-    model = Letter
-    fields = ["title", "content", "image"]
+class DailyUpdateView(UserroomMixin, UpdateView):
+    model = Daily
+    fields = ["bt", "meal", "sleep", "stool", "medicine", "mood", "contact"]
 
     def get_success_url(self):
         pk = self.kwargs.get("pk")
-        return reverse("letter:detail", kwargs={"pk": pk})
+        return reverse("daily:detail", kwargs={"pk": pk})
 
     def form_valid(self, form):
         messages.success(self.request, "更新しました")
@@ -44,10 +50,11 @@ class LetterUpdateView(UserroomMixin, UpdateView):
         messages.error(self.request, "更新できませんでした")
         return super().form_invalid(form)
 
-class LetterDeleteView(UserroomMixin, DeleteView):
-    model = Letter
-    success_url = reverse_lazy("letter:index")
+class DailyDeleteView(UserroomMixin, DeleteView):
+    model = Daily
+    success_url = reverse_lazy("daily:index")
 
     def form_valid(self, form):
         messages.success(self.request, "削除しました")
         return super().form_valid(form)
+

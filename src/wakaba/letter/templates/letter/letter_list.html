@@ -6,7 +6,7 @@
   <!-- Heading Row -->
     <div class="row align-items-center my-5">
       <div class="col-lg-6">
-        <img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'images/letter_top.png' %}" alt="">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'images/letter_top.jpg' %}" alt="">
       </div>
       <!-- /.col-lg-8 -->
       <div class="col-lg-5">
@@ -31,7 +31,7 @@
             <h5 class="card-title">{{ letter.title }}</h5>
           </div>
           <div class="card-footer">
-            <a href="{% url 'letter:detail' letter.id %}" class="btn btn-primary btn-sm">詳しく見る</a>
+            <a href="{% url 'letter:detail' letter.id %}" class="btn btn-info btn-sm">詳しく見る</a>
           </div>
         </div>
       </div>

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="vh-100">
+  <div class="row my-3">
+    <div class="col-lg-12">
+      <div class="text-right">
+        <a class="btn btn-warning" href="{% url 'daily:index' %}">戻る</a>
+        {% if request.user.is_authenticated and request.user == daily.user%}
+          <a class="btn btn-info" href="{% url 'daily:update' daily.id %}">編集</a>
+          <a class="btn btn-danger" href="{% url 'daily:delete' daily.id %}">削除</a>
+        {% endif %}
+      </div>
+      <h1>{{ daily.created|date:"Y-m-d"}}</h1>
+    </div>
+  </div>
+
+  <div class="col-lg-12">
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th scope="row">体温</th>
+          <td>{{ daily.bt }}</td>
+        </tr>
+        <tr>
+          <th scope="row">食事</th>
+          <td>{{ daily.meal }}</td>
+        </tr>
+        <tr>
+          <th scope="row">睡眠</th>
+          <td>{{ daily.sleep }}</td>
+        </tr>
+        <tr>
+          <th scope="row">便</th>
+          <td>{{ daily.stool }}</td>
+        </tr>
+        <tr>
+          <th scope="row">薬</th>
+          <td>{{ daily.medicine }}</td>
+        </tr>
+        <tr>
+          <th scope="row">機嫌</th>
+          <td>{{ daily.mood }}</td>
+        </tr>
+        <tr>
+          <th scope="row">家庭での様子</th>
+          <td>{{ daily.contact }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-lg-12">
+    <div>
+      <p class="text-muted">投稿日：{{ daily.created }}　変更日：{{ daily.modified }}</p>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

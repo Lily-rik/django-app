@@ -3,10 +3,63 @@
 
 {% block body %}
 
-<div>
-  <a href="{% url 'letter:index' %}">おたより</a>
-</div>
-<h2>連絡帳</h2>
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Heading Row -->
+    <div class="d-flex justify-content-center my-5">
+      <div>
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'images/wakaba.jpg' %}" alt="" width="350" height="250">
+      </div>
+    </div>
+    <div class="d-flex justify-content-center my-5">
+      <h1 class="font-weight-light">わかば保育園</h1>
+    </div>
+
+    <!-- Call to Action Well -->
+    <div class="card text-white bg-success my-5 py-4 mt-5 text-center">
+      <div class="card-body">
+        <p class="text-white m-0">子どもたちの『今』を大切に、心と体を育む保育</p>
+      </div>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row mt-5">
+      <div class="col-md-3 mb-4">
+        <div class="card h-80">
+          <img class="card-img-top" src="{% static 'images/otayori.jpg' %}" alt="" width="300" height="200"/>
+          <div class="card-footer">
+            <a href="{% url 'letter:index' %}" class="btn" >おたより</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="card h-80">
+          <img class="card-img-top" src="{% static 'images/rentakutyou.jpg' %}" alt="" width="300" height="200"/>
+          <div class="card-footer">
+            <a href="{% url 'daily:index' %}" class="btn" >連絡帳</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="card h-80">
+          <img class="card-img-top" src="{% static 'images/tyotyo.jpg' %}" alt="" width="300" height="200"/>
+          <div class="card-footer">
+            <a href="#" class="btn" >職員紹介</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="card h-80">
+          <img class="card-img-top" src="{% static 'images/syasin.jpg' %}" alt="" width="300" height="200"/>
+          <div class="card-footer">
+            <a href="#" class="btn" >写真販売</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div> 
 
 {% endblock %}
-
